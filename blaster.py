@@ -29,13 +29,14 @@ def switchy_main(net):
             gotpkt = False
         except Shutdown:
             log_debug("Got shutdown signal")
-            print_output(0,0,0,0,0)
+            #print_output(0,0,0,0,0)
             break
 
         if gotpkt:
             log_debug("I got a packet")
         else:
             log_debug("Didn't receive anything")
+            print_output(0,0,0,0,0)
 
             '''
             Creating the headers for the packet
