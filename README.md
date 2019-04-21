@@ -14,6 +14,25 @@ This reliable commication library implements the following features to provide a
 * A __fixed-size sliding window__ on __blaster__.
 * __Timeouts__ on __blaster__ to resend non-ACK'd packets.
 
+## Middlebox
+
+This is a very basic version of the router in P2 (IPv4-Router).
+1. The __middlebox__ will have 2 ports with a signle connection: one to the __blaster__ and one to the __blastee__.
+2. The same packet header modifications are done as in P2 (__Not sure__).
+    * Decrement the TTL field in the IP header by 1.
+    * Modify the Ethernet header. There are 3 fields in the Ethernet header. dst, ethertype and src. src is the source mac address.
+    ``` python
+    src = intf.ethaddr
+    ```
+    dst is the next hop MAC address.
+    Instead of making ARP requests, IP-MAC mappings are hard coded into the middlebox code. This means, if the middlebox receives a packet from its eth0 interface(= from blaster), it will forward it out from eth1(= to blastee) and vice versa. Regardless of the source IP address, just *forward the packet from the other interface.*
+3. The middlebox will also be in charge of *probabilistically dropping packets* to simulate all the evil things that can happen in a real network. Packet drops will only happen in *one direction*, from **blaster** to **blastee** (i.e do not drop ACKs)
+4. NOTE: the probabilistic drop logic is sketched out the starter file middlebox.py. Use it to keep your drops deterministic.
+
+
+
+
+
 ##  Running the code
 The implementations will be run in Mininet. A topology file (start_mininet.py) is provided. Do not change the addresses (IP and MAC) or node/link setup. When testing, different delay values might be used.
 
