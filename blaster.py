@@ -29,6 +29,7 @@ def switchy_main(net):
             gotpkt = False
         except Shutdown:
             log_debug("Got shutdown signal")
+            print_output(0,0,0,0,0)
             break
 
         if gotpkt:
