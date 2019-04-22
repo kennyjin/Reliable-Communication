@@ -25,6 +25,8 @@ def switchy_main(net):
         if gotpkt:
             log_debug("I got a packet from {}".format(dev))
             log_debug("Pkt: {}".format(pkt))
+            # Extract the sequence number info from the received data packet. 
+            # Create an ACK packet with the same sequence number.
 
 
     net.shutdown()

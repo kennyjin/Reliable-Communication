@@ -29,8 +29,12 @@ This is a very basic version of the router in P2 (IPv4-Router).
 3. The middlebox will also be in charge of *probabilistically dropping packets* to simulate all the evil things that can happen in a real network. Packet drops will only happen in *one direction*, from **blaster** to **blastee** (i.e do not drop ACKs)
 4. NOTE: the probabilistic drop logic is sketched out the starter file middlebox.py. Use it to keep your drops deterministic.
 
+## Blastee
 
+Blastee will receive data packets from the blaster and immediately ACK them.
 
+1. Extract the sequence number information from the received data packet. 
+2. Create an ACK packet with the same sequence number.
 
 
 ##  Running the code

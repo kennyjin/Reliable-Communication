@@ -36,7 +36,6 @@ def switchy_main(net):
             log_debug("I got a packet")
         else:
             log_debug("Didn't receive anything")
-            print_output(0,0,0,0,0)
 
             '''
             Creating the headers for the packet
