@@ -36,6 +36,24 @@ Blastee will receive data packets from the blaster and immediately ACK them.
 1. Extract the sequence number information from the received data packet. 
 2. Create an ACK packet with the same sequence number.
 
+## Blaster
+
+Blaster will send/receive variable sized IP packets/ACKs to/from the blastee.  A fixed sized sender window (SW) is implemented at packet granularity.
+
+Two variables are defined to described how SW will work.
+
+* _LHS_: The number corresponding to the smallest numbered unACKed packet of the SW.
+* _RHS_: The number corresponding to the next packet to be transmitted.
+
+2 conditions are always needed to be satisfied:
+
+* RHS - LHS <= SW
+* Every packet with sequence number Sj < Si has been successfully ACKed. (__Not sure what is the seq number here__) 
+
+Whenever a packet has not been ACKed for a certain amount of time, the blaster will __time out__ and retransmit the packet in the current window that has't been ACKed yet.
+
+## Packet Format
+
 
 ##  Running the code
 The implementations will be run in Mininet. A topology file (start_mininet.py) is provided. Do not change the addresses (IP and MAC) or node/link setup. When testing, different delay values might be used.
