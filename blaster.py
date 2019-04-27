@@ -48,8 +48,8 @@ def switchy_main(net):
 
             # TODO This is for debugging purpose, delete afterwards
             num_recvd += 1 
-            
             log_debug("I got a packet")
+            
         else:
             log_debug("Didn't receive anything")
 
