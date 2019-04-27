@@ -33,8 +33,8 @@ def switchy_main(net):
             ack[0].ethertype = EtherType.IPv4
             ack[1].protocol = IPProtocol.UDP
             # TODO Not very sure about this
-            ack[1].src = pkt[0].dst
-            ack[1].dst = pkt[0].src
+            ack[1].src = pkt[1].dst
+            ack[1].dst = pkt[1].src
             # Set values for UDP headers
             ack[2].src = pkt[2].dst
             ack[2].dst = pkt[2].src
