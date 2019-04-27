@@ -20,7 +20,16 @@ def switchy_main(net):
     mymacs = [intf.ethaddr for intf in my_intf]
     myips = [intf.ipaddr for intf in my_intf]
 
+    # TODO These are for debugging purpose, delete afterwards
+    num_pkts = 10 
+    num_recvd = 0
+
     while True:
+        # TODO These are for debugging purpose, delete afterwards
+        if num_recvd == num_pkts:
+            break
+
+
         gotpkt = True
         # The sequence number of a packet
         seqnum = 0
@@ -36,6 +45,10 @@ def switchy_main(net):
             break
 
         if gotpkt:
+
+            # TODO This is for debugging purpose, delete afterwards
+            num_recvd += 1 
+            
             log_debug("I got a packet")
         else:
             log_debug("Didn't receive anything")
@@ -66,7 +79,7 @@ def switchy_main(net):
             pkt += seqnum_byte
             pkt += payload_length_byte
             pkt += payload_byte
-            print(pkt)
+            log_debug("Pkt: {}".format(pkt))
             '''
             Do other things here and send packet
             '''
