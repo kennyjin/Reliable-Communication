@@ -5,6 +5,7 @@ from switchyard.lib.packet import *
 from switchyard.lib.userlib import *
 from random import randint
 import time
+import struct
 
 def print_output(total_time, num_ret, num_tos, throughput, goodput):
     print("Total TX time (s): " + str(total_time))
@@ -21,6 +22,8 @@ def switchy_main(net):
 
     while True:
         gotpkt = True
+        # The sequence number of a packet
+        seqnum = 0
         try:
             #Timeout value will be parameterized!
             timestamp,dev,pkt = net.recv_packet(timeout=0.15)
@@ -41,8 +44,29 @@ def switchy_main(net):
             Creating the headers for the packet
             '''
             pkt = Ethernet() + IPv4() + UDP()
+            pkt[0].src = "10:00:00:00:00:01"
+            pkt[0].dst = "40:00:00:00:00:01"
+            pkt[0].ethertype = EtherType.IPv4
             pkt[1].protocol = IPProtocol.UDP
-
+            # TODO Not very sure about this
+            pkt[1].src = "192.168.100.1"
+            pkt[1].dst = "192.168.200.1"
+            # Set arbituary values for UDP headers
+            pkt[2].src = 4444
+            pkt[2].dst = 5555
+            seqnum += 1
+            # Make the sequence number into a byte object with a length of 4 bytes (32 bits)
+            # Used big-endian encoding
+            seqnum_byte = struct.pack(">I", seqnum)
+            payload_byte = b"These are some application data bytes"
+            payload_length = len(payload_byte)
+            # Make the payload length into a byte object with a length of 2 bytes (16 bits)
+            # Used big-endian encoding
+            payload_length_byte = struct.pack(">H", payload_length)
+            pkt += seqnum_byte
+            pkt += payload_length_byte
+            pkt += payload_byte
+            print(pkt)
             '''
             Do other things here and send packet
             '''
