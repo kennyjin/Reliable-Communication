@@ -70,5 +70,6 @@ def switchy_main(net):
             '''
             Do other things here and send packet
             '''
+            net.send_packet("blaster-eth0", pkt)
 
     net.shutdown()
