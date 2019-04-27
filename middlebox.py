@@ -16,8 +16,8 @@ def switchy_main(net):
     mymacs = [intf.ethaddr for intf in my_intf]
     myips = [intf.ipaddr for intf in my_intf]
 
-    # Read from middlebox_param.txt
-    param = open("middlebox_param.txt", "r")
+    # Read from middlebox_params.txt
+    param = open("middlebox_params.txt", "r")
     line = param.readline()
     words = line.split()
 
