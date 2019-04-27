@@ -44,7 +44,7 @@ def switchy_main(net):
             ack += seqnum_byte
 
             # Try converting RawPacketContents into bytes
-            payload_byte = (bytes)pkt[5]
+            payload_byte = (bytes)(pkt[5])
 
             payload_length = len(payload_byte)
 
