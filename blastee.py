@@ -41,12 +41,12 @@ def switchy_main(net):
 
             # Set sequence number bytes for ack
             # Get bit 0 to bit 32
-            seqnum_byte = (bytes)(pkt[3])[0 : 4]
+            seqnum_byte = ((bytes)(pkt[3]))[0 : 4]
             ack += seqnum_byte
 
             # Try converting RawPacketContents into bytes
             # Get bit 48 to the end
-            payload_byte = (bytes)(pkt[3])[6 : ]
+            payload_byte = ((bytes)(pkt[3]))[6 : ]
 
             payload_length = len(payload_byte)
 
