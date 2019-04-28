@@ -48,6 +48,12 @@ def switchy_main(net):
 
         if gotpkt:
             log_debug("I got a packet {}".format(pkt))
+            if pkt[Ethernet].ethertype != EtherType.IPv4:
+                continue
+            if not pkt.has_header(IPv4):
+                continue
+            if not pkt.has_header(UDP):
+                continue
 
         if dev == "middlebox-eth0":
             log_debug("Received from blaster")
