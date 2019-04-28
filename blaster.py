@@ -21,7 +21,7 @@ def switchy_main(net):
     myips = [intf.ipaddr for intf in my_intf]
 
     # TODO These are for debugging purpose, delete afterwards
-    num_pkts = 2 
+    num_pkts = 1 
     num_recvd = 0
 
     while True:
