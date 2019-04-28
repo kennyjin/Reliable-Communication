@@ -51,6 +51,13 @@ def switchy_main(net):
 
         if dev == "middlebox-eth0":
             log_debug("Received from blaster")
+
+            # Get sequence number of ack
+            seqnum_byte = (pkt[3].data)[0 : 4]
+            seqnum = (struct.unpack(">I", seqnum_byte))[0]
+
+            print("Received Pkt: " +  str(seqnum))
+
             '''
             Received data packet
             Should I drop it?
@@ -75,6 +82,13 @@ def switchy_main(net):
             net.send_packet("middlebox-eth1", pkt)
         elif dev == "middlebox-eth1":
             log_debug("Received from blastee")
+
+            # Get sequence number of ack
+            ack_seqnum_byte = (pkt[3].data)[0 : 4]
+            ack_seqnum = (struct.unpack(">I", ack_seqnum_byte))[0]
+
+            print("Received Ack Pkt: " +  str(ack_seqnum))
+
             '''
             Received ACK
             Modify headers & send to blaster. Not dropping ACK packets!

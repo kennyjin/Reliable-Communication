@@ -32,7 +32,7 @@ def switchy_main(net):
                 continue
             if not pkt.has_header(UDP):
                 continue
-                
+
             # Extract the sequence number info from the received data packet. 
             # Create an ACK packet with the same sequence number.
             ack = Ethernet() + IPv4() + UDP()
@@ -51,6 +51,11 @@ def switchy_main(net):
             # Get bit 0 to bit 32
             seqnum_byte = (pkt[3].data)[0 : 4]
             ack += seqnum_byte
+
+            # DEBUG
+            seqnum = (struct.unpack(">I", seqnum_byte))[0]
+
+            print("Received Pkt: " +  str(seqnum))
 
             # Try converting RawPacketContents into bytes
             # Get bit 48 to the end

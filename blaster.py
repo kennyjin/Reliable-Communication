@@ -130,11 +130,13 @@ def switchy_main(net):
 
             log_debug("Pkt: {}".format(pkt))
 
-            print("Received Pkt: {}".format(pkt))
+            
 
             # Get sequence number of ack
             ack_seqnum_byte = (pkt[3].data)[0 : 4]
             ack_seqnum = (struct.unpack(">I", ack_seqnum_byte))[0]
+
+            print("Received Ack Pkt: " +  str(ack_seqnum))
 
             # May add sanity check, i.e, check if the seqnum exist in dict
 
@@ -236,7 +238,7 @@ def switchy_main(net):
             # TODO This is for debugging purpose, delete afterwards
             num_sent += 1
 
-            print("Sent Pkt: {}".format(pkt))
+            print("Sent Pkt: " + str(seqnum))
 
             if first_sent == True:
                 first_sent_time = time.time()
