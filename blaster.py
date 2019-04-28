@@ -161,13 +161,16 @@ def switchy_main(net):
 
             # continue for while loop
             if flag == True:
+                print("situation 1")
                 continue
 
             # TODO This is for debugging purpose, delete afterwards
             if num_sent == num_pkts:
+                print("situation 2")
                 continue
 
             if RHS == LHS + SW:
+                print("situation 3")
                 continue
 
             '''
