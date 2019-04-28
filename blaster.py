@@ -100,11 +100,11 @@ def switchy_main(net):
             # print(SW_dict_time)
             # print(SW_dict_acked)
             # print(num_resent)
-            # break
+            
             total_time = last_ack_time - first_sent_time
             print_output(total_time, num_resent, num_resent, \
              total_num_bytes / total_time, total_num_good_bytes / total_time )
-
+            break
 
         gotpkt = True
         
