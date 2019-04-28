@@ -81,7 +81,8 @@ def switchy_main(net):
             # Make the sequence number into a byte object with a length of 4 bytes (32 bits)
             # Used big-endian encoding
             seqnum_byte = struct.pack(">I", seqnum)
-            payload_byte = b"These are some application data bytes"
+            # payload_byte = b"These are some application data bytes"
+            payload_byte = b"bytes"
             payload_length = len(payload_byte)
             # Make the payload length into a byte object with a length of 2 bytes (16 bits)
             # Used big-endian encoding
