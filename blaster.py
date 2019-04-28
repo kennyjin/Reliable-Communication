@@ -82,16 +82,28 @@ def switchy_main(net):
     # The 2 variables used in sender window
     LHS = RHS = 1
 
+    first_sent_time = 0
+    last_ack_time = 0
+
+    first_sent = True
+
+    total_num_bytes = 0
+
+    total_num_good_bytes = 0
+
     while True:
 
         print("LHS = " + str(LHS))
         print("RHS = " + str(RHS))
         # TODO These are for debugging purpose, delete afterwards
         if num_recvd == num_pkts:
-            print(SW_dict_time)
-            print(SW_dict_acked)
-            print(num_resent)
-            break
+            # print(SW_dict_time)
+            # print(SW_dict_acked)
+            # print(num_resent)
+            # break
+            total_time = last_ack_time - first_sent_time
+            print_output(total_time, num_resent, num_resent, \
+             total_num_bytes / total_time, total_num_good_bytes / total_time )
 
 
         gotpkt = True
@@ -111,6 +123,8 @@ def switchy_main(net):
 
             # TODO This is for debugging purpose, delete afterwards
             num_recvd += 1 
+            if num_recvd == num_pkts:
+                last_ack_time = time.time()
             log_debug("I got a packet")
 
             log_debug("Pkt: {}".format(pkt))
@@ -153,6 +167,7 @@ def switchy_main(net):
                     pkt = make_pkt(i, payload_length)
                     # send packet
                     net.send_packet("blaster-eth0", pkt)
+                    total_num_bytes += payload_length
                     # reset timer
                     SW_dict_time[i] = time.time()
                     flag = True
@@ -215,12 +230,17 @@ def switchy_main(net):
             net.send_packet("blaster-eth0", pkt)
             SW_dict_time[seqnum] = time.time()
             SW_dict_acked[seqnum] = False
-
             RHS += 1
 
             # TODO This is for debugging purpose, delete afterwards
             num_sent += 1
 
             print("Sent Pkt: {}".format(pkt))
+
+            if first_sent == True:
+                first_sent_time = time.time()
+                first_sent = False
+            total_num_bytes += payload_length
+            total_num_good_bytes += payload_length
 
     net.shutdown()
