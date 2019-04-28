@@ -25,6 +25,9 @@ def switchy_main(net):
         if gotpkt:
             log_debug("I got a packet from {}".format(dev))
             log_debug("Pkt: {}".format(pkt))
+            # Only acknowledge IPv4 packets
+            if pkt[Ethernet].ethertype != EtherType.IPv4:
+            	continue
             # Extract the sequence number info from the received data packet. 
             # Create an ACK packet with the same sequence number.
             ack = Ethernet() + IPv4() + UDP()
