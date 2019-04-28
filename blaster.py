@@ -82,6 +82,9 @@ def switchy_main(net):
     LHS = RHS = 1
 
     while True:
+
+        print("LHS = " + LHS)
+        print("RHS = " + RHS)
         # TODO These are for debugging purpose, delete afterwards
         if num_recvd == num_pkts:
             print(SW_dict_time)
