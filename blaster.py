@@ -25,6 +25,9 @@ def switchy_main(net):
     num_sent = 0
     num_recvd = 0
 
+    # The sequence number of a packet
+    seqnum = 0
+
     while True:
         # TODO These are for debugging purpose, delete afterwards
         if num_recvd == num_pkts:
@@ -32,8 +35,7 @@ def switchy_main(net):
 
 
         gotpkt = True
-        # The sequence number of a packet
-        seqnum = 0
+        
         try:
             #Timeout value will be parameterized!
             timestamp,dev,pkt = net.recv_packet(timeout=0.15)
