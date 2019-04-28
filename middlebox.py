@@ -62,7 +62,7 @@ def switchy_main(net):
             seqnum_byte = (pkt[3].data)[0 : 4]
             seqnum = (struct.unpack(">I", seqnum_byte))[0]
 
-            print("Received Pkt: " +  str(seqnum))
+            #print("Received Pkt: " +  str(seqnum))
 
             '''
             Received data packet
@@ -75,7 +75,7 @@ def switchy_main(net):
             num = random.randint(1, 100)
             if num <= probability_of_drop:
                 log_debug("Dropped a packet {}".format(pkt))
-                print(num)
+                #print(num)
                 #print("Dropped a packet {}".format(pkt))
                 continue
 
@@ -93,7 +93,7 @@ def switchy_main(net):
             ack_seqnum_byte = (pkt[3].data)[0 : 4]
             ack_seqnum = (struct.unpack(">I", ack_seqnum_byte))[0]
 
-            print("Received Ack Pkt: " +  str(ack_seqnum))
+            #print("Received Ack Pkt: " +  str(ack_seqnum))
 
             '''
             Received ACK

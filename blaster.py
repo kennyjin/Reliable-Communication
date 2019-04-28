@@ -93,10 +93,10 @@ def switchy_main(net):
 
     while True:
 
-        print("LHS = " + str(LHS))
-        print("RHS = " + str(RHS))
-        print("num_recvd = " + str(num_recvd))
-        print("num_pkts = " + str(num_pkts))
+        #print("LHS = " + str(LHS))
+        #print("RHS = " + str(RHS))
+        #print("num_recvd = " + str(num_recvd))
+        #print("num_pkts = " + str(num_pkts))
         # TODO These are for debugging purpose, delete afterwards
         if num_recvd == num_pkts:
             # print(SW_dict_time)
@@ -136,7 +136,7 @@ def switchy_main(net):
             ack_seqnum_byte = (pkt[3].data)[0 : 4]
             ack_seqnum = (struct.unpack(">I", ack_seqnum_byte))[0]
 
-            print("Received Ack Pkt: " +  str(ack_seqnum))
+            #print("Received Ack Pkt: " +  str(ack_seqnum))
 
             # May add sanity check, i.e, check if the seqnum exist in dict
 
@@ -175,23 +175,23 @@ def switchy_main(net):
                     SW_dict_time[i] = time.time()
                     flag = True
 
-                    print("Resent Pkt: {}".format(pkt))
+                    #print("Resent Pkt: {}".format(pkt))
                     num_resent += 1
                     # break the for loop
                     break
 
             # continue for while loop
             if flag == True:
-                print("situation 1")
+                #print("situation 1")
                 continue
 
             # TODO This is for debugging purpose, delete afterwards
             if num_sent == num_pkts:
-                print("situation 2")
+                #print("situation 2")
                 continue
 
             if RHS == LHS + SW:
-                print("situation 3")
+                #print("situation 3")
                 continue
 
             '''
@@ -238,7 +238,7 @@ def switchy_main(net):
             # TODO This is for debugging purpose, delete afterwards
             num_sent += 1
 
-            print("Sent Pkt: " + str(seqnum))
+            #print("Sent Pkt: " + str(seqnum))
 
             if first_sent == True:
                 first_sent_time = time.time()

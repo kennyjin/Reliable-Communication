@@ -55,7 +55,7 @@ def switchy_main(net):
             # DEBUG
             seqnum = (struct.unpack(">I", seqnum_byte))[0]
 
-            print("Received Pkt: " +  str(seqnum))
+            #print("Received Pkt: " +  str(seqnum))
 
             # Try converting RawPacketContents into bytes
             # Get bit 48 to the end
