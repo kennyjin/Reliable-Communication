@@ -158,7 +158,7 @@ def switchy_main(net):
                     flag = True
 
                     print("Resent Pkt: {}".format(pkt))
-                    num_sent += 1
+                    num_resent += 1
                     # break the for loop
                     break
 
