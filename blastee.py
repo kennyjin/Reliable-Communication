@@ -28,6 +28,14 @@ def switchy_main(net):
             # Only acknowledge IPv4 packets
             if pkt[Ethernet].ethertype != EtherType.IPv4:
             	continue
+            if not pkt.has_header(IPv4):
+            	continue
+            if not pkt.has_header(UDP):
+            	continue
+            print("Have IPv4")
+            print(pkt.has_header(IPv4))
+            print("Have UDP")
+            print(pkt.has_header(UDP))
             # Extract the sequence number info from the received data packet. 
             # Create an ACK packet with the same sequence number.
             ack = Ethernet() + IPv4() + UDP()
