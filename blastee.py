@@ -27,15 +27,12 @@ def switchy_main(net):
             log_debug("Pkt: {}".format(pkt))
             # Only acknowledge IPv4 packets
             if pkt[Ethernet].ethertype != EtherType.IPv4:
-            	continue
+                continue
             if not pkt.has_header(IPv4):
-            	continue
+                continue
             if not pkt.has_header(UDP):
-            	continue
-            print("Have IPv4")
-            print(pkt.has_header(IPv4))
-            print("Have UDP")
-            print(pkt.has_header(UDP))
+                continue
+                
             # Extract the sequence number info from the received data packet. 
             # Create an ACK packet with the same sequence number.
             ack = Ethernet() + IPv4() + UDP()
@@ -63,7 +60,7 @@ def switchy_main(net):
 
             # When the length is smaller than 8, add padding
             if payload_length < 8:
-            	payload_byte += "\0".encode() * (8 - payload_length)
+                payload_byte += "\0".encode() * (8 - payload_length)
 
             # Get the first 8 bytes
             payload_byte = payload_byte[0:8]
