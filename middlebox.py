@@ -43,6 +43,9 @@ def switchy_main(net):
             log_debug("Got shutdown signal")
             break
 
+        if not gotpkt:
+            continue
+
         if gotpkt:
             log_debug("I got a packet {}".format(pkt))
 
