@@ -22,6 +22,7 @@ def switchy_main(net):
 
     # TODO These are for debugging purpose, delete afterwards
     num_pkts = 1 
+    num_sent = 0
     num_recvd = 0
 
     while True:
@@ -52,6 +53,11 @@ def switchy_main(net):
 
         else:
             log_debug("Didn't receive anything")
+
+            # TODO This is for debugging purpose, delete afterwards
+            if num_sent == num_pkts:
+                continue
+
 
             '''
             Creating the headers for the packet
@@ -84,5 +90,8 @@ def switchy_main(net):
             Do other things here and send packet
             '''
             net.send_packet("blaster-eth0", pkt)
+
+            # TODO This is for debugging purpose, delete afterwards
+            num_sent += 1
 
     net.shutdown()
