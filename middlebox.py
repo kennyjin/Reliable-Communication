@@ -59,6 +59,7 @@ def switchy_main(net):
             num = random.randint(1, 100)
             if num <= probability_of_drop:
                 log_debug("Dropped a packet {}".format(pkt))
+                print(num)
                 print("Dropped a packet {}".format(pkt))
                 continue
 
