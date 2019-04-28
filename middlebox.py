@@ -60,7 +60,7 @@ def switchy_main(net):
             if num <= probability_of_drop:
                 log_debug("Dropped a packet {}".format(pkt))
                 print(num)
-                print("Dropped a packet {}".format(pkt))
+                #print("Dropped a packet {}".format(pkt))
                 continue
 
             # Modify Ethernet header
