@@ -21,7 +21,7 @@ def switchy_main(net):
     myips = [intf.ipaddr for intf in my_intf]
 
     # TODO These are for debugging purpose, delete afterwards
-    num_pkts = 1 
+    num_pkts = 10 
     num_sent = 0
     num_recvd = 0
 
@@ -50,7 +50,7 @@ def switchy_main(net):
             # TODO This is for debugging purpose, delete afterwards
             num_recvd += 1 
             log_debug("I got a packet")
-            
+
             log_debug("Pkt: {}".format(pkt))
 
         else:
