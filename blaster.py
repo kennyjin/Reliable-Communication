@@ -148,7 +148,7 @@ def switchy_main(net):
 
             # Check for timeout and unacked packet
             for i in range(LHS, RHS):
-                if (SW_dict_acked[i] == False) and (SW_dict_time[i] - time.time() > coarse_timeout / 1000):
+                if (SW_dict_acked[i] == False) and (time.time() - SW_dict_time[i] > coarse_timeout / 1000):
                     # TODO make packet
                     pkt = make_pkt(i, payload_length)
                     # send packet
