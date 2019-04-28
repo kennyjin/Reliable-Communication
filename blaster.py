@@ -66,6 +66,7 @@ def switchy_main(net):
     # num_pkts = 10 
     num_sent = 0
     num_recvd = 0
+    num_resent = 0
 
     # The sequence number of a packet
     seqnum = 0
@@ -89,6 +90,7 @@ def switchy_main(net):
         if num_recvd == num_pkts:
             print(SW_dict_time)
             print(SW_dict_acked)
+            print(num_resent)
             break
 
 
@@ -156,6 +158,7 @@ def switchy_main(net):
                     flag = True
 
                     print("Resent Pkt: {}".format(pkt))
+                    num_sent += 1
                     # break the for loop
                     break
 

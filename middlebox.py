@@ -56,10 +56,11 @@ def switchy_main(net):
             '''
             # Randomly drop packets
 
-            # num = random.randint(1, 100)
-            # if num <= probability_of_drop:
-            #     log_debug("Dropped a packet {}".format(pkt))
-            #     continue
+            num = random.randint(1, 100)
+            if num <= probability_of_drop:
+                log_debug("Dropped a packet {}".format(pkt))
+                print("Dropped a packet {}".format(pkt))
+                continue
 
             # Modify Ethernet header
             # Send from eth1 to blastee
