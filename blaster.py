@@ -20,8 +20,18 @@ def switchy_main(net):
     mymacs = [intf.ethaddr for intf in my_intf]
     myips = [intf.ipaddr for intf in my_intf]
 
+    param = open("blaster_params.txt", "r")
+    line = param.readline()
+    words = line.split()
+
+    num_pkts = (int)(words[1])
+    payload_length = (int)(words[3])
+    SW = (int)(words[5])
+    coarse_timeout = (float)(words[7]) # milliseconds
+    recv_timeout = (float)(words[9]) # milliseconds
+
     # TODO These are for debugging purpose, delete afterwards
-    num_pkts = 10 
+    # num_pkts = 10 
     num_sent = 0
     num_recvd = 0
 
@@ -38,7 +48,7 @@ def switchy_main(net):
         
         try:
             #Timeout value will be parameterized!
-            timestamp,dev,pkt = net.recv_packet(timeout=0.15)
+            timestamp,dev,pkt = net.recv_packet(timeout = recv_timeout / 1000)
         except NoPackets:
             log_debug("No packets available in recv_packet")
             gotpkt = False
@@ -81,9 +91,14 @@ def switchy_main(net):
             # Make the sequence number into a byte object with a length of 4 bytes (32 bits)
             # Used big-endian encoding
             seqnum_byte = struct.pack(">I", seqnum)
+
             # payload_byte = b"These are some application data bytes"
-            payload_byte = b"bytes"
-            payload_length = len(payload_byte)
+            # payload_byte = b"bytes"
+            # payload_length = len(payload_byte)
+
+            # Generate payload according to the given length
+            payload_byte = ("a" * payload_length).encode()
+
             # Make the payload length into a byte object with a length of 2 bytes (16 bits)
             # Used big-endian encoding
             payload_length_byte = struct.pack(">H", payload_length)
